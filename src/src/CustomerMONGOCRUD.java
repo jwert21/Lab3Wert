@@ -38,7 +38,7 @@ public class CustomerMongoCRUD {
 
             // Read again
             customers = collection.find();
-            for (Document student : customers) {
+            for (Document customer : customers) {
                 System.out.println(customer.toJson());
             }
 

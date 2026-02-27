@@ -21,19 +21,19 @@ public class CustomerMySQLCRUD {
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/School", "root", "IST888IST888");
-            insertStudent(connection, 1, "John", "Doe", 20, "john@example.com");
+            insertCustomer(connection, 1, "John", "Doe", 20, "john@example.com");
 
-            for(Student student : getAllStudents(connection)) {
-                System.out.println(student.toString());
+            for(Customer customer : getAllCustomers(connection)) {
+                System.out.println(customer.toString());
             }
 
-            updateStudent(connection, 1, "Updated First Name");
+            updateCustomer(connection, 1, "Updated First Name");
 
-            for(Student student : getAllStudents(connection)) {
-                System.out.println(student.toString());
+            for(Customer customer : getAllCustomers(connection)) {
+                System.out.println(customer.toString());
             }
 
-            deleteStudent(connection, 1);
+            deleteCustomer(connection, 1);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -49,8 +49,8 @@ public class CustomerMySQLCRUD {
 
     }
 
-    private static void insertStudent(Connection connection, int id, String firstName, String lastName, int age, String email) throws SQLException {
-        String sql = "INSERT INTO students (id, firstName, lastName, age, email) VALUES (?, ?, ?, ?, ?)";
+    private static void insertCustomer(Connection connection, int id, String firstName, String lastName, int age, String email) throws SQLException {
+        String sql = "INSERT INTO customers (id, firstName, lastName, age, email) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
@@ -63,9 +63,9 @@ public class CustomerMySQLCRUD {
 
     }
 
-    private static List<Student> getAllStudents(Connection connection) throws SQLException {
-        List<Student> students = new ArrayList();
-        String sql = "SELECT id, firstName, lastName, age, email FROM students";
+    private static List<Customer> getAllCustomers(Connection connection) throws SQLException {
+        List<Customer> customers = new ArrayList();
+        String sql = "SELECT id, firstName, lastName, age, email FROM customers";
 
         try (
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -77,7 +77,7 @@ public class CustomerMySQLCRUD {
                 String lastName = resultSet.getString("lastName");
                 int age = resultSet.getInt("age");
                 String email = resultSet.getString("email");
-                students.add(new Student(id, firstName, lastName, age, email));
+                customers.add(new Customer(id, firstName, lastName, age, email));
             }
         }
 
