@@ -11,35 +11,35 @@ public class CustomerMongoCRUD {
         try (MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017")) {
             // Access the database and collection
             MongoDatabase database = mongoClient.getDatabase("your_database_name");
-            MongoCollection<Document> collection = database.getCollection("students");
+            MongoCollection<Document> collection = database.getCollection("customers");
 
             // Example: Insert a document
-            Document newStudent = new Document("first_name", "John")
+            Document newCustomer = new Document("first_name", "John")
                     .append("last_name", "Doe")
                     .append("age", 20)
                     .append("email", "john@example.com");
-            collection.insertOne(newStudent);
+            collection.insertOne(newCustomer);
 
-            Document newStudent2 = new Document("first_name", "Jonah")
+            Document newCustomer2 = new Document("first_name", "Jonah")
                     .append("last_name", "Wert")
                     .append("age", 22)
                     .append("email", "jwert@gmail.com");
-            collection.insertOne(newStudent2);
+            collection.insertOne(newCustomer2);
 
             // Read
-            FindIterable<Document> students = collection.find();
-            for (Document student : students) {
-                System.out.println(student.toJson());
+            FindIterable<Document> customers = collection.find();
+            for (Document customer : customers) {
+                System.out.println(customer.toJson());
             }
 
             // Update
-            Document updatedStudent = new Document("$set", new Document("first_name", "Updated First Name"));
-            collection.updateOne(new Document("first_name", "John"), updatedStudent);
+            Document updatedCustomer = new Document("$set", new Document("first_name", "Updated First Name"));
+            collection.updateOne(new Document("first_name", "John"), updatedCustomer);
 
             // Read again
-            students = collection.find();
-            for (Document student : students) {
-                System.out.println(student.toJson());
+            customers = collection.find();
+            for (Document student : customers) {
+                System.out.println(customer.toJson());
             }
 
             // Delete
