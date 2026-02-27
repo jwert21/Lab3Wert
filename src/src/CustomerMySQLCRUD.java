@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerMySQLCRUD {
-    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/School";
+    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/Store"
     private static final String USERNAME = "root";
     private static final String PASSWORD = "IST888IST888";
 
@@ -20,7 +20,7 @@ public class CustomerMySQLCRUD {
         Connection connection = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/School", "root", "IST888IST888");
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Store", "root", "IST888IST888");
             insertCustomer(connection, 1, "John", "Doe", 20, "john@example.com");
 
             for(Customer customer : getAllCustomers(connection)) {
