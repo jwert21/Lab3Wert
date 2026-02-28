@@ -8,16 +8,13 @@ public class Main {
         Customer2 = new Jonah(2, "Jonah", "Wert", 22, "jwert@gmail.com", 1234567899);
         Customer3 = new Jane(3, "Jane", "Doe", 21, "jdoe@gmail.com", 3216549877););
 
-        System.out.println("Pokemon 1 " + p1.getName());
-        System.out.println("Pokemon 2 " + p2.getName());
-        System.out.println("Pokemon 3 " + p3.getName());
-        System.out.println("Pokemon 4 " + p4.getName());
-        System.out.println("Pokemon 5 " + p5.getName());
+        System.out.println("John " + Customer.getfirstName());
+        System.out.println("Jonah " + Customer2.getfirstName());
+        System.out.println("Jane " + Customer3.getfirstName());
 
-        p1.specialPowers();
-        p2.specialPowers();
-        p3.specialPowers();
-        p4.specialPowers();
-        p5.specialPowers();
+
+        Customer.firstName();
+        Customer2.firstName();
+        Customer3.firstName();
     }
 }
