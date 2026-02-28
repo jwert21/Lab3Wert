@@ -21,6 +21,7 @@ public class CustomerMongoCRUD {
                     .append("age", 20)
                     .append("email", "john@example.com");
                     .append("phoneNumber", 9876543211)
+                    .append("address", "123 Pine Street, Willow Grove PA, 19090")
             collection.insertOne(newCustomer);
 
             Document newCustomer2 = new Document("first_name", "Jonah")
