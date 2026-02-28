@@ -83,11 +83,11 @@ public class CustomerMySQLCRUD {
             }
         }
 
-        return students;
+        return customers;
     }
 
-    private static void updateStudent(Connection connection, int id, String newFirstName) throws SQLException {
-        String sql = "UPDATE students SET firstName = ? WHERE id = ?";
+    private static void updateCustomer(Connection connection, int id, String newFirstName) throws SQLException {
+        String sql = "UPDATE customers SET firstName = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, newFirstName);
@@ -97,8 +97,124 @@ public class CustomerMySQLCRUD {
 
     }
 
-    private static void deleteStudent(Connection connection, int id) throws SQLException {
-        String sql = "DELETE FROM students WHERE id = ?";
+    private static void deleteCustomer(Connection connection, int id) throws SQLException {
+        String sql = "DELETE FROM customers WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        }
+
+    }
+
+    private static void insertCustomer2(Connection connection, int id, String firstName, String lastName, int age, String email, int phoneNumber) throws SQLException {
+        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, firstName);
+            preparedStatement.setString(3, lastName);
+            preparedStatement.setInt(4, age);
+            preparedStatement.setString(5, email);
+            preparedStatement.setString(6, phoneNumber)
+            preparedStatement.executeUpdate();
+        }
+
+    }
+
+    private static List<Customer2> getAllCustomers(Connection connection) throws SQLException {
+        List<Customer2> customers = new ArrayList();
+        String sql = "SELECT id, firstName, lastName, age, email, phoneNumber FROM customers";
+
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                int age = resultSet.getInt("age");
+                String email = resultSet.getString("email");
+                int phoneNumber = resultSet.getInt("phoneNumber")
+                customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber));
+            }
+        }
+
+        return customers;
+    }
+
+    private static void updateCustomer2(Connection connection, int id, String newFirstName) throws SQLException {
+        String sql = "UPDATE customers SET firstName = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, newFirstName);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        }
+
+    }
+
+    private static void deleteCustomer2(Connection connection, int id) throws SQLException {
+        String sql = "DELETE FROM customers WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        }
+
+    }
+
+    private static void insertCustomer3(Connection connection, int id, String firstName, String lastName, int age, String email, int phoneNumber) throws SQLException {
+        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, firstName);
+            preparedStatement.setString(3, lastName);
+            preparedStatement.setInt(4, age);
+            preparedStatement.setString(5, email);
+            preparedStatement.setString(6, phoneNumber)
+            preparedStatement.executeUpdate();
+        }
+
+    }
+
+    private static List<Customer3> getAllCustomers(Connection connection) throws SQLException {
+        List<Customer3> customers = new ArrayList();
+        String sql = "SELECT id, firstName, lastName, age, email, phoneNumber FROM customers";
+
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                int age = resultSet.getInt("age");
+                String email = resultSet.getString("email");
+                int phoneNumber = resultSet.getInt("phoneNumber")
+                customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber));
+            }
+        }
+
+        return customers;
+    }
+
+    private static void updateCustomer3(Connection connection, int id, String newFirstName) throws SQLException {
+        String sql = "UPDATE customers SET firstName = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, newFirstName);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        }
+
+    }
+
+    private static void deleteCustomer3(Connection connection, int id) throws SQLException {
+        String sql = "DELETE FROM customers WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
