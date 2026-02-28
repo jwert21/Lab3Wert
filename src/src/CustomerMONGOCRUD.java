@@ -5,6 +5,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
 
+import static jdk.internal.org.jline.utils.AttributedStringBuilder.append;
+
 public class CustomerMongoCRUD {
     public static void main(String[] args) {
         // Create a MongoClient using the factory method
@@ -18,13 +20,22 @@ public class CustomerMongoCRUD {
                     .append("last_name", "Doe")
                     .append("age", 20)
                     .append("email", "john@example.com");
+                    .append("phoneNumber", 9876543211)
             collection.insertOne(newCustomer);
 
             Document newCustomer2 = new Document("first_name", "Jonah")
                     .append("last_name", "Wert")
                     .append("age", 22)
                     .append("email", "jwert@gmail.com");
+                    .append("phoneNumber", 1234567899)
             collection.insertOne(newCustomer2);
+
+            Document newCustomer3 = new Document("first_name", "Jane")
+                    .append("last_name", "Doe")
+                    .append("age", 21)
+                    .append("email", "jdoe@gmail.com");
+                    .append("phoneNumber", 3216549877)
+            collection.insertOne(newCustomer3);
 
             // Read
             FindIterable<Document> customers = collection.find();
@@ -44,6 +55,44 @@ public class CustomerMongoCRUD {
 
             // Delete
             collection.deleteOne(new Document("first_name", "John"));
+
+            // Read
+            FindIterable<Document> customers = collection.find();
+            for (Document customer2 : customers) {
+                System.out.println(customer2.toJson());
+            }
+
+            // Update
+            Document updatedCustomer2 = new Document("$set", new Document("first_name", "Updated First Name"));
+            collection.updateOne(new Document("first_name", "Jonah"), updatedCustomer2);
+
+            // Read again
+            customers = collection.find();
+            for (Document customer2 : customers) {
+                System.out.println(customer2.toJson());
+            }
+
+            // Delete
+            collection.deleteOne(new Document("first_name", "Jonah"));
+
+            // Read
+            FindIterable<Document> customers = collection.find();
+            for (Document customer3 : customers) {
+                System.out.println(customer3.toJson());
+            }
+
+            // Update
+            Document updatedCustomer3 = new Document("$set", new Document("first_name", "Updated First Name"));
+            collection.updateOne(new Document("first_name", "Joe"), updatedCustomer3);
+
+            // Read again
+            customers = collection.find();
+            for (Document customer3 : customers) {
+                System.out.println(customer3.toJson());
+            }
+
+            // Delete
+            collection.deleteOne(new Document("first_name", "Joe"));
 
         }
     }
