@@ -21,7 +21,7 @@ public class CustomerMySQLCRUD {
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Store", "root", "IST888IST888");
-            insertCustomer(connection, 1, "Jonah", "Wert", 22, "jwert@gmail.com", "1234567899");
+            insertCustomer(connection, 1, "John", "Doe", 20, "john@example.com", 9876543211);
 
             for(Customer customer : getAllCustomers(connection)) {
                 System.out.println(customer.toString());
@@ -34,6 +34,55 @@ public class CustomerMySQLCRUD {
             }
 
             deleteCustomer(connection, 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Store", "root", "IST888IST888");
+            insertCustomer(connection, 2, "Jonah", "Wert", 22, "jwert@gmail.com", 1234567899);
+
+            for(Customer customer : getAllCustomers(connection)) {
+                System.out.println(customer.toString());
+            }
+
+            updateCustomer(connection, 2, "Updated First Name");
+
+            for(Customer customer : getAllCustomers(connection)) {
+                System.out.println(customer.toString());
+            }
+
+            deleteCustomer(connection, 2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Store", "root", "IST888IST888");
+            insertCustomer(connection, 3, "Jane", "Doe", 21, "jdoe@gmail.com", 3216549877);
+
+            for(Customer customer : getAllCustomers(connection)) {
+                System.out.println(customer.toString());
+            }
+
+            updateCustomer(connection, 3, "Updated First Name");
+
+            for(Customer customer : getAllCustomers(connection)) {
+                System.out.println(customer.toString());
+            }
+
+            deleteCustomer(connection, 3);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

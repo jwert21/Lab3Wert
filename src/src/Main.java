@@ -1,24 +1,23 @@
 //
 // Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+// (powered by Fernflower decompile
+public class Main {
 
-class Customer {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private int age;
-    private String email;
+    public static void main(String[] args){
+        Customer = new John(1, "John", "Doe", 20, "john@example.com", 9876543211););
+        Customer2 = new Jonah(2, "Jonah", "Wert", 22, "jwert@gmail.com", 1234567899);
+        Customer3 = new Jane(3, "Jane", "Doe", 21, "jdoe@gmail.com", 3216549877););
 
-    public Customer(int id, String firstName, String lastName, int age, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.email = email;
-    }
+        System.out.println("Pokemon 1 " + p1.getName());
+        System.out.println("Pokemon 2 " + p2.getName());
+        System.out.println("Pokemon 3 " + p3.getName());
+        System.out.println("Pokemon 4 " + p4.getName());
+        System.out.println("Pokemon 5 " + p5.getName());
 
-    public String toString() {
-        return "Customer{id=" + this.id + ", firstName='" + this.firstName + "', lastName='" + this.lastName + "', age=" + this.age + ", email='" + this.email + "'}";
+        p1.specialPowers();
+        p2.specialPowers();
+        p3.specialPowers();
+        p4.specialPowers();
+        p5.specialPowers();
     }
 }
