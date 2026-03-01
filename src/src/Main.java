@@ -1,7 +1,12 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompile
-public class Main {
+/** Project: Lab 3
+ * Purpose Details:
+ * Course: IST 242
+ * Author: Jonah Wert
+ * Date Developed: 2/26/2026
+ * Last Date Changed: 3/1/2026
+ * Rev: 3/1/2026
+
+ */
 
     public static void main(String[] args){
         Customer = new John(1, "John", "Doe", 20, "john@example.com", "9876543211");
