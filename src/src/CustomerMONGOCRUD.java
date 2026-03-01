@@ -5,8 +5,6 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
 
-import static jdk.internal.org.jline.utils.AttributedStringBuilder.append;
-
 public class CustomerMongoCRUD {
     public static void main(String[] args) {
         // Create a MongoClient using the factory method
@@ -19,7 +17,7 @@ public class CustomerMongoCRUD {
             Document newCustomer = new Document("first_name", "John")
                     .append("last_name", "Doe")
                     .append("age", 20)
-                    .append("email", "john@example.com");
+                    .append("email", "john@example.com")
                     .append("phoneNumber", "9876543211")
                     .append("address", "123 Pine Street, Willow Grove PA, 19090");
             collection.insertOne(newCustomer);
@@ -60,7 +58,7 @@ public class CustomerMongoCRUD {
             collection.deleteOne(new Document("first_name", "John"));
 
             // Read
-            FindIterable<Document> customers = collection.find();
+            customers = collection.find();
             for (Document customer2 : customers) {
                 System.out.println(customer2.toJson());
             }
@@ -79,7 +77,7 @@ public class CustomerMongoCRUD {
             collection.deleteOne(new Document("first_name", "Jonah"));
 
             // Read
-            FindIterable<Document> customers = collection.find();
+            customers = collection.find();
             for (Document customer3 : customers) {
                 System.out.println(customer3.toJson());
             }
