@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerMySQLCRUD {
-    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/Store"
+    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/Store";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "IST888IST888";
 
