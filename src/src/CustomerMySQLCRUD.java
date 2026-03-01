@@ -21,7 +21,7 @@ public class CustomerMySQLCRUD {
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Store", "root", "IST888IST888");
-            insertCustomer(connection, 1, "John", "Doe", 20, "john@example.com", 9876543211, "123 Pine Street, Willow Grove PA, 19090");
+            insertCustomer(connection, 1, "John", "Doe", 20, "john@example.com", "9876543211", "123 Pine Street, Willow Grove PA, 19090");
 
             for(Customer customer : getAllCustomers(connection)) {
                 System.out.println(customer.toString());
@@ -45,7 +45,7 @@ public class CustomerMySQLCRUD {
                 e.printStackTrace();
             }
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Store", "root", "IST888IST888");
-            insertCustomer(connection, 2, "Jonah", "Wert", 22, "jwert@gmail.com", 1234567899, "456 Broad Street, Philadelphia PA, 19115");
+            insertCustomer(connection, 2, "Jonah", "Wert", 22, "jwert@gmail.com", "1234567899", "456 Broad Street, Philadelphia PA, 19115");
 
             for(Customer customer : getAllCustomers(connection)) {
                 System.out.println(customer.toString());
@@ -70,7 +70,7 @@ public class CustomerMySQLCRUD {
             }
 
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Store", "root", "IST888IST888");
-            insertCustomer(connection, 3, "Jane", "Doe", 21, "jdoe@gmail.com", 3216549877, "221 Woodland Road, Abington PA, 19001");
+            insertCustomer(connection, 3, "Jane", "Doe", 21, "jdoe@gmail.com", "3216549877", "221 Woodland Road, Abington PA, 19001");
 
             for(Customer customer : getAllCustomers(connection)) {
                 System.out.println(customer.toString());
