@@ -21,7 +21,7 @@ public class CustomerMongoCRUD {
                     .append("age", 20)
                     .append("email", "john@example.com");
                     .append("phoneNumber", 9876543211)
-                    .append("address", "123 Pine Street, Willow Grove PA, 19090")
+                    .append("address", "123 Pine Street, Willow Grove PA, 19090");
             collection.insertOne(newCustomer);
 
             Document newCustomer2 = new Document("first_name", "Jonah")
@@ -29,6 +29,7 @@ public class CustomerMongoCRUD {
                     .append("age", 22)
                     .append("email", "jwert@gmail.com");
                     .append("phoneNumber", 1234567899)
+                    .append("address", "456 Broad Street, Philadelphia PA, 19115");
             collection.insertOne(newCustomer2);
 
             Document newCustomer3 = new Document("first_name", "Jane")
@@ -36,6 +37,7 @@ public class CustomerMongoCRUD {
                     .append("age", 21)
                     .append("email", "jdoe@gmail.com");
                     .append("phoneNumber", 3216549877)
+                    .append("address", "221 Woodland Road, Abington PA, 19001");
             collection.insertOne(newCustomer3);
 
             // Read
