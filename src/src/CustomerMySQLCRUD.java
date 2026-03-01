@@ -98,8 +98,8 @@ public class CustomerMySQLCRUD {
 
     }
 
-    private static void insertCustomer(Connection connection, int id, String firstName, String lastName, int age, String email, int phoneNumber, String address) throws SQLException {
-        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?)";
+    private static void insertCustomer(Connection connection, int id, String firstName, String lastName, int age, String email, String phoneNumber, String address) throws SQLException {
+        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?, ?)"
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
@@ -128,7 +128,7 @@ public class CustomerMySQLCRUD {
                 String lastName = resultSet.getString("lastName");
                 int age = resultSet.getInt("age");
                 String email = resultSet.getString("email");
-                int phoneNumber = resultSet.getInt("phoneNumber")
+                int phoneNumber = resultSet.getString("phoneNumber")
                 customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber));
             }
         }
@@ -157,8 +157,8 @@ public class CustomerMySQLCRUD {
 
     }
 
-    private static void insertCustomer2(Connection connection, int id, String firstName, String lastName, int age, String email, int phoneNumber) throws SQLException {
-        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
+    private static void insertCustomer2(Connection connection, int id, String firstName, String lastName, int age, String email, String phoneNumber) throws SQLException {
+        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
@@ -174,7 +174,7 @@ public class CustomerMySQLCRUD {
 
     private static List<Customer2> getAllCustomers(Connection connection) throws SQLException {
         List<Customer2> customers = new ArrayList();
-        String sql = "SELECT id, firstName, lastName, age, email, phoneNumber FROM customers";
+        String sql = "SELECT id, firstName, lastName, age, email, phoneNumber, address FROM customers";
 
         try (
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -186,8 +186,8 @@ public class CustomerMySQLCRUD {
                 String lastName = resultSet.getString("lastName");
                 int age = resultSet.getInt("age");
                 String email = resultSet.getString("email");
-                int phoneNumber = resultSet.getInt("phoneNumber")
-                customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber));
+                String phoneNumber = resultSet.getInt("phoneNumber")
+                customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber, address));
             }
         }
 
@@ -216,7 +216,7 @@ public class CustomerMySQLCRUD {
     }
 
     private static void insertCustomer3(Connection connection, int id, String firstName, String lastName, int age, String email, int phoneNumber) throws SQLException {
-        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
@@ -232,7 +232,7 @@ public class CustomerMySQLCRUD {
 
     private static List<Customer3> getAllCustomers(Connection connection) throws SQLException {
         List<Customer3> customers = new ArrayList();
-        String sql = "SELECT id, firstName, lastName, age, email, phoneNumber FROM customers";
+        String sql = "SELECT id, firstName, lastName, age, email, phoneNumber, address FROM customers";
 
         try (
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -245,7 +245,7 @@ public class CustomerMySQLCRUD {
                 int age = resultSet.getInt("age");
                 String email = resultSet.getString("email");
                 int phoneNumber = resultSet.getInt("phoneNumber")
-                customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber));
+                customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber, address));
             }
         }
 
