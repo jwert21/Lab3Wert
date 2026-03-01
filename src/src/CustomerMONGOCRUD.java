@@ -1,101 +1,87 @@
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
 
 public class CustomerMongoCRUD {
+
+    private static final String CONNECTION_STRING = "mongodb://localhost:27017";
+    private static final String DATABASE_NAME = "store";
+    private static final String COLLECTION_NAME = "customers";
+
     public static void main(String[] args) {
-        // Create a MongoClient using the factory method
-        try (MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017")) {
-            // Access the database and collection
-            MongoDatabase database = mongoClient.getDatabase("your_database_name");
-            MongoCollection<Document> collection = database.getCollection("customers");
 
-            // Example: Insert a document
-            Document newCustomer = new Document("first_name", "John")
-                    .append("last_name", "Doe")
-                    .append("age", 20)
-                    .append("email", "john@example.com")
-                    .append("phoneNumber", "9876543211")
-                    .append("address", "123 Pine Street, Willow Grove PA, 19090");
-            collection.insertOne(newCustomer);
+        try (MongoClient mongoClient = MongoClients.create(CONNECTION_STRING)) {
 
-            Document newCustomer2 = new Document("first_name", "Jonah")
-                    .append("last_name", "Wert")
-                    .append("age", 22)
-                    .append("email", "jwert@gmail.com");
-                    .append("phoneNumber", "1234567899")
-                    .append("address", "456 Broad Street, Philadelphia PA, 19115");
-            collection.insertOne(newCustomer2);
+            MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
+            MongoCollection<Document> collection =
+                    database.getCollection(COLLECTION_NAME);
 
-            Document newCustomer3 = new Document("first_name", "Jane")
-                    .append("last_name", "Doe")
-                    .append("age", 21)
-                    .append("email", "jdoe@gmail.com");
-                    .append("phoneNumber", "3216549877")
-                    .append("address", "221 Woodland Road, Abington PA, 19001");
-            collection.insertOne(newCustomer3);
+            // Clear collection (optional for testing)
+            collection.deleteMany(new Document());
 
-            // Read
-            FindIterable<Document> customers = collection.find();
-            for (Document customer : customers) {
-                System.out.println(customer.toJson());
-            }
+            // CREATE
+            insertCustomer(collection, "John", "Doe", 20, "john@example.com", "9876543211", "123 Pine Street, Willow Grove PA, 19090");
 
-            // Update
-            Document updatedCustomer = new Document("$set", new Document("first_name", "Updated First Name"));
-            collection.updateOne(new Document("first_name", "John"), updatedCustomer);
+            insertCustomer(collection, "Jonah", "Wert", 22, "jwert@gmail.com", "1234567899", "456 Broad Street, Philadelphia PA, 19115");
 
-            // Read again
-            customers = collection.find();
-            for (Document customer : customers) {
-                System.out.println(customer.toJson());
-            }
+            insertCustomer(collection, "Jane", "Doe", 21, "jdoe@gmail.com", "3216549877", "221 Woodland Road, Abington PA, 19001");
 
-            // Delete
-            collection.deleteOne(new Document("first_name", "John"));
+            System.out.println("After Insert:");
+            printAllCustomers(collection);
 
-            // Read
-            customers = collection.find();
-            for (Document customer2 : customers) {
-                System.out.println(customer2.toJson());
-            }
+            // UPDATE
+            updateCustomer(collection, "John", "Updated First Name");
 
-            // Update
-            Document updatedCustomer2 = new Document("$set", new Document("first_name", "Updated First Name"));
-            collection.updateOne(new Document("first_name", "Jonah"), updatedCustomer2);
+            System.out.println("\nAfter Update:");
+            printAllCustomers(collection);
 
-            // Read again
-            customers = collection.find();
-            for (Document customer2 : customers) {
-                System.out.println(customer2.toJson());
-            }
+            // DELETE
+            deleteCustomer(collection, "Updated First Name");
 
-            // Delete
-            collection.deleteOne(new Document("first_name", "Jonah"));
+            System.out.println("\nAfter Delete:");
+            printAllCustomers(collection);
 
-            // Read
-            customers = collection.find();
-            for (Document customer3 : customers) {
-                System.out.println(customer3.toJson());
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-            // Update
-            Document updatedCustomer3 = new Document("$set", new Document("first_name", "Updated First Name"));
-            collection.updateOne(new Document("first_name", "Joe"), updatedCustomer3);
+    private static void insertCustomer(MongoCollection<Document> collection, String firstName, String lastName, int age, String email, String phoneNumber, String address) {
 
-            // Read again
-            customers = collection.find();
-            for (Document customer3 : customers) {
-                System.out.println(customer3.toJson());
-            }
+        Document customer = new Document("first_name", firstName)
+                .append("last_name", lastName)
+                .append("age", age)
+                .append("email", email)
+                .append("phoneNumber", phoneNumber)
+                .append("address", address);
 
-            // Delete
-            collection.deleteOne(new Document("first_name", "Joe"));
+        collection.insertOne(customer);
+    }
 
+    private static void updateCustomer(MongoCollection<Document> collection, String existingFirstName, String newFirstName) {
+
+        Document filter = new Document("first_name", existingFirstName);
+        Document update = new Document("$set",
+                new Document("first_name", newFirstName));
+
+        collection.updateOne(filter, update);
+    }
+
+    private static void deleteCustomer(MongoCollection<Document> collection, String firstName) {
+
+        Document filter = new Document("first_name", firstName);
+        collection.deleteOne(filter);
+    }
+
+    private static void printAllCustomers(MongoCollection<Document> collection) {
+
+        FindIterable<Document> customers = collection.find();
+
+        for (Document customer : customers) {
+            System.out.println(customer.toJson());
         }
     }
 }
-
