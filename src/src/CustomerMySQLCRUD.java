@@ -128,7 +128,8 @@ public class CustomerMySQLCRUD {
                 String lastName = resultSet.getString("lastName");
                 int age = resultSet.getInt("age");
                 String email = resultSet.getString("email");
-                int phoneNumber = resultSet.getString("phoneNumber")
+                String phoneNumber = resultSet.getString("phoneNumber");
+                String address = resultSet.getString("address");
                 customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber));
             }
         }
@@ -157,7 +158,7 @@ public class CustomerMySQLCRUD {
 
     }
 
-    private static void insertCustomer2(Connection connection, int id, String firstName, String lastName, int age, String email, String phoneNumber) throws SQLException {
+    private static void insertCustomer2(Connection connection, int id, String firstName, String lastName, int age, String email, String phoneNumber, String address) throws SQLException {
         String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -166,7 +167,8 @@ public class CustomerMySQLCRUD {
             preparedStatement.setString(3, lastName);
             preparedStatement.setInt(4, age);
             preparedStatement.setString(5, email);
-            preparedStatement.setString(6, phoneNumber)
+            preparedStatement.setString(6, phoneNumber);
+            preparedStatement.setString(7, address);
             preparedStatement.executeUpdate();
         }
 
@@ -186,7 +188,8 @@ public class CustomerMySQLCRUD {
                 String lastName = resultSet.getString("lastName");
                 int age = resultSet.getInt("age");
                 String email = resultSet.getString("email");
-                String phoneNumber = resultSet.getInt("phoneNumber")
+                String phoneNumber = resultSet.getInt("phoneNumber");
+                String address = resultSet.getString("address");
                 customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber, address));
             }
         }
@@ -215,7 +218,7 @@ public class CustomerMySQLCRUD {
 
     }
 
-    private static void insertCustomer3(Connection connection, int id, String firstName, String lastName, int age, String email, int phoneNumber) throws SQLException {
+    private static void insertCustomer3(Connection connection, int id, String firstName, String lastName, int age, String email, int phoneNumber, String address) throws SQLException {
         String sql = "INSERT INTO customers (id, firstName, lastName, age, email, phoneNumber, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -224,7 +227,8 @@ public class CustomerMySQLCRUD {
             preparedStatement.setString(3, lastName);
             preparedStatement.setInt(4, age);
             preparedStatement.setString(5, email);
-            preparedStatement.setString(6, phoneNumber)
+            preparedStatement.setString(6, phoneNumber);
+            preparedStatement.setString(7, address);
             preparedStatement.executeUpdate();
         }
 
@@ -244,7 +248,8 @@ public class CustomerMySQLCRUD {
                 String lastName = resultSet.getString("lastName");
                 int age = resultSet.getInt("age");
                 String email = resultSet.getString("email");
-                int phoneNumber = resultSet.getInt("phoneNumber")
+                String phoneNumber = resultSet.getString("phoneNumber");
+                String address = resultSet.getString("address");
                 customers.add(new Customer(id, firstName, lastName, age, email, phoneNumber, address));
             }
         }
