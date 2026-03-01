@@ -1,3 +1,13 @@
+/** Project: Lab 3
+ * Purpose Details:
+ * Course: IST 242
+ * Author: Jonah Wert
+ * Date Developed: 2/26/2026
+ * Last Date Changed: 3/1/2026
+ * Rev: 3/1/2026
+
+ */
+
 public class Customer {
     private String id;
     private String firstName;
