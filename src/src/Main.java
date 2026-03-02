@@ -8,17 +8,31 @@
 
  */
 
-    public static void main(String[] args){
-        Customer = new John(1, "John", "Doe", 20, "john@example.com", "9876543211");
-        Customer2 = new Jonah(2, "Jonah", "Wert", 22, "jwert@gmail.com", "1234567899");
-        Customer3 = new Jane(3, "Jane", "Doe", 21, "jdoe@gmail.com", "3216549877");
+public class Main {
+    public static void main(String[] args) {
+        Customer customer1 = new Customer(1, "John", "Doe", 20, "john@example.com", "9876543211");
+        Customer customer2 = new Customer(2, "Jonah", "Wert", 22, "jwert@gmail.com", "1234569877");
+        Customer customer3 = new Customer(3, "Jane", "Doe", 21, "jdoe@gmail.com", "3216549877");
 
-        System.out.println("John " + Customer.getfirstName());
-        System.out.println("Jonah " + Customer2.getfirstName());
-        System.out.println("Jane " + Customer3.getfirstName());
+        Customer mysql = new CustomerMySQLCRUD();
+        Customer mongo = new CustomerMongoCRUD();
 
-        Customer.firstName();
-        Customer2.firstName();
-        Customer3.firstName();
+        mysql.create(customer1);
+        mysql.create(customer2);
+        mysql.create(customer3);
+
+        mongo.create(customer1);
+        mongo.create(customer2);
+        mongo.create(customer3);
+
+        mysql.read(1);
+        mongo.read(2);
+
+        customer1.setEmail("newjohn@example.com");
+        mysql.update(customer1);
+        mongo.update(customer1);
+
+        mysql.delete(3);
+        mongo.delete(3);
     }
 }
