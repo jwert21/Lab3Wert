@@ -14,25 +14,29 @@ public class Main {
         Customer customer2 = new Customer(2, "Jonah", "Wert", 22, "jwert@gmail.com", "1234569877");
         Customer customer3 = new Customer(3, "Jane", "Doe", 21, "jdoe@gmail.com", "3216549877");
 
-        Customer mysql = new CustomerMySQLCRUD();
-        Customer mongo = new CustomerMongoCRUD();
+        StudentCRUDExample mysql = new StudentCRUDExample();
+        StudentMongoCRUDExample mongo = new StudentMongoCRUDExample();
 
-        mysql.create(customer1);
-        mysql.create(customer2);
-        mysql.create(customer3);
+        // CREATE
+        mysql.create(student1);
+        mongo.create(student1);
 
-        mongo.create(customer1);
-        mongo.create(customer2);
-        mongo.create(customer3);
-
+        // READ (read the same id you created)
         mysql.read(1);
-        mongo.read(2);
+        mongo.read(1);
 
-        customer1.setEmail("newjohn@example.com");
-        mysql.update(customer1);
-        mongo.update(customer1);
+        // UPDATE
+        student1.setEmail("newjohn@example.com");
+        student1.setFirstName("Johnny");
+        mysql.update(student1);
+        mongo.update(student1);
 
-        mysql.delete(3);
-        mongo.delete(3);
+        // DELETE
+        mysql.delete(1);
+        mongo.delete(1);
+
+        // cleanup
+        mysql.close();
+        mongo.close();
     }
 }
