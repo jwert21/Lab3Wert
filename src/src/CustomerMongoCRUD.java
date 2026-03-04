@@ -42,7 +42,7 @@ public class CustomerMongoCRUD {
     public void read(int id) {
         Document doc = collection.find(new Document("id", id)).first();
         if (doc == null) {
-            System.out.println("Mongo: No student found with id=" + id);
+            System.out.println("Mongo: No customer found with id=" + id);
         } else {
             System.out.println(doc.toJson());
         }
