@@ -34,9 +34,5 @@ public class Main {
         // DELETE
         mysql.delete(1);
         mongo.delete(1);
-
-        // cleanup
-        mysql.close();
-        mongo.close();
     }
 }
