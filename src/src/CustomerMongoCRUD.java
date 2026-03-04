@@ -9,6 +9,9 @@
  */
 
 import com.mongodb.client.*;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
         import org.bson.Document;
 
 public class CustomerMongoCRUD {

@@ -23,7 +23,6 @@ public class CustomerMySQLCRUD implements CustomerCRUD {
         }
     }
 
-    @Override
     public void create(Customer customer) {
         String sql = "INSERT INTO customers (id, first_name, last_name, age, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -42,7 +41,6 @@ public class CustomerMySQLCRUD implements CustomerCRUD {
         }
     }
 
-    @Override
     public Customer read(int id) {
         String sql = "SELECT * FROM customers WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -67,7 +65,6 @@ public class CustomerMySQLCRUD implements CustomerCRUD {
         return null;
     }
 
-    @Override
     public void update(Customer customer) {
         String sql = "UPDATE customers SET email = ? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -82,7 +79,6 @@ public class CustomerMySQLCRUD implements CustomerCRUD {
         }
     }
 
-    @Override
     public void delete(int id) {
         String sql = "DELETE FROM customers WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);

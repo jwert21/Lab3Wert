@@ -14,8 +14,8 @@ public class Main {
         Customer customer2 = new Customer(2, "Jonah", "Wert", 22, "jwert@gmail.com", "1234569877");
         Customer customer3 = new Customer(3, "Jane", "Doe", 21, "jdoe@gmail.com", "3216549877");
 
-        CustomerCRUDExample mysql = new CustomerCRUDExample();
-        CustomerMongoCRUDExample mongo = new CustomerMongoCRUDExample();
+        CustomerMySQLCRUD mysql = new CustomerMySQLCRUD();
+        CustomerMongoCRUD mongo = new CustomerMongoCRUD();
 
         // CREATE
         mysql.create(customer1);
