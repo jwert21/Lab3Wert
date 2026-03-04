@@ -9,7 +9,7 @@
  */
 import java.sql.*;
 
-public class CustomerMySQLCRUD implements CustomerCRUD {
+public class CustomerMySQLCRUD {
 
     private static final String URL = "jdbc:mysql://localhost:3306/store";
     private static final String USER = "root";
