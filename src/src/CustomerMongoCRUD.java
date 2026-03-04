@@ -65,3 +65,61 @@ public class CustomerMongoCRUD implements CustomerCRUD {
         collection.deleteOne(filter);
     }
 }
+
+import com.mongodb.client.*;
+        import org.bson.Document;
+
+public class CustomerMongoCRUD {
+
+    private final MongoClient mongoClient;
+    private final MongoCollection<Document> collection;
+
+    public CustomerMongoCRUD() {
+        mongoClient = MongoClients.create("mongodb://localhost:27017");
+        MongoDatabase database = mongoClient.getDatabase("store");
+        collection = database.getCollection("customers");
+    }
+
+    public void close() {
+        mongoClient.close();
+    }
+
+    // CREATE
+    public void create(Customer customer) {
+        Document doc = new Document("id", customer.getId())
+                .append("first_name", customer.getFirstName())
+                .append("last_name", customer.getLastName())
+                .append("age", customer.getAge())
+                .append("email", customer.getEmail())
+                .append("phoneNumber", customer.getPhoneNumber());
+
+        collection.insertOne(doc);
+    }
+
+    // READ (by id)
+    public void read(int id) {
+        Document doc = collection.find(new Document("id", id)).first();
+        if (doc == null) {
+            System.out.println("Mongo: No student found with id=" + id);
+        } else {
+            System.out.println(doc.toJson());
+        }
+    }
+
+    // UPDATE (by id)
+    public void update(Customer customer) {
+        Document filter = new Document("id", customer.getId());
+        Document set = new Document("first_name", customer.getFirstName())
+                .append("last_name", customer.getLastName())
+                .append("age", customer.getAge())
+                .append("email", customer.getEmail())
+                .append("phoneNumber", customer.getPhoneNumber());
+
+        collection.updateOne(filter, new Document("$set", set));
+    }
+
+    // DELETE (by id)
+    public void delete(int id) {
+        collection.deleteOne(new Document("id", id));
+    }
+}
