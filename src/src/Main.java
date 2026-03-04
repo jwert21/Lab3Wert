@@ -17,21 +17,17 @@ public class Main {
         CustomerMySQLCRUD mysql = new CustomerMySQLCRUD();
         CustomerMongoCRUD mongo = new CustomerMongoCRUD();
 
-        // CREATE
         mysql.create(customer1);
         mongo.create(customer1);
 
-        // READ (read the same id you created)
         mysql.read(1);
         mongo.read(1);
 
-        // UPDATE
         customer1.setEmail("newjohn@example.com");
         customer1.setFirstName("John");
         mysql.update(customer1);
         mongo.update(customer1);
 
-        // DELETE
         mysql.delete(1);
         mongo.delete(1);
     }
